@@ -184,35 +184,16 @@ const asyncHandler = fn => (req, res, next) => {
 
 
 // Routes
-// app.get('/tasks', isAuthenticated, async (req, res) => {                  -------------------------------------------------------------
-//     try {
-//         const userId = req.session.userId;
-//         const tasks = await Task.find({ user: userId });
-//         res.json(tasks);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// });
-
-
-
-
-
-app.get('/tasks', isAuthenticated, async (req, res) => {
+app.get('/tasks', isAuthenticated, async (req, res) => {  
     try {
         const userId = req.session.userId;
         const tasks = await Task.find({ user: userId });
-
-        // Responding with a URL, if necessary
-        res.json({
-            message: "Tasks fetched successfully",
-            tasks: tasks,
-            backendUrl: `${backendUrl}/tasks` // Include the dynamic URL
-        });
+        res.json(tasks);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
+
 
 
 
@@ -394,8 +375,8 @@ app.post('/signup', asyncHandler(async (req, res) => {
 
 
 
-// Existing user Login
-app.post('/login', async (req, res) => {
+// Existing user Login                                                  ----------------------------------------- changed the end point -----------------------------
+app.post(`${backendUrl}/login`, async (req, res) => {
     const { email, password } = req.body;  // Changed 'username' to 'email'
     console.log('Login attempt:', { email, password });  // Debug log
 
