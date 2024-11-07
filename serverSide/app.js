@@ -120,9 +120,14 @@ app.get('/contact', (req, res) => {
 });
 
 // Serve the plans page
+// app.get('/pricing', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../clientSide/pricing.html'));
+// });
+
 app.get('/pricing', (req, res) => {
-    res.sendFile(path.join(__dirname, '../clientSide/pricing.html'));
+    res.redirect('https://to-do-app-frontend-brown-phi.vercel.app/pricing');
 });
+
 
 // Serve the about page
 app.get('/about', (req, res) => {
