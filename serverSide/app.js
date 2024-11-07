@@ -6,7 +6,14 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const cors = require('cors');
+app.use(cors({
+    origin: '*',  // Allow all origins for now, but you should restrict it in production
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 require('dotenv').config();
+
 
 
 const app = express();
@@ -87,6 +94,7 @@ const contactSchema = new mongoose.Schema({
 const Contact = mongoose.model('Contact', contactSchema);
 
 
+const backendUrl = process.env.BACKEND_URL || "http://localhost:3000"; // fallback to local during development
 
 
 
@@ -176,15 +184,36 @@ const asyncHandler = fn => (req, res, next) => {
 
 
 // Routes
+// app.get('/tasks', isAuthenticated, async (req, res) => {                  -------------------------------------------------------------
+//     try {
+//         const userId = req.session.userId;
+//         const tasks = await Task.find({ user: userId });
+//         res.json(tasks);
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// });
+
+
+
+
+
 app.get('/tasks', isAuthenticated, async (req, res) => {
     try {
         const userId = req.session.userId;
         const tasks = await Task.find({ user: userId });
-        res.json(tasks);
+
+        // Responding with a URL, if necessary
+        res.json({
+            message: "Tasks fetched successfully",
+            tasks: tasks,
+            backendUrl: `${backendUrl}/tasks` // Include the dynamic URL
+        });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
+
 
 
 // Deleting Task
