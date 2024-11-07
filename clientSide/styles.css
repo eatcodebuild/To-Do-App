@@ -1,0 +1,454 @@
+.btn-primary {
+    background-color: rgb(28, 160, 165) !important;
+    border-color: rgb(28, 160, 165) !important;
+}
+
+.btn-primary.white {
+    background-color: rgb(255, 255, 255) !important;
+    border-color: rgb(255, 255, 255) !important;
+    color: rgb(68, 68, 68) !important;
+}
+
+.btn-primary.white:hover {
+    background-color: rgb(68, 68, 68) !important;
+    border-color: rgb(68, 68, 68) !important;
+    color: white !important;
+}
+
+.btn-primary.white:active {
+    background-color: rgb(51, 51, 51) !important;
+    border-color: rgb(51, 51, 51) !important;
+    color: white !important;
+}
+
+.btn-primary.grey {
+    background-color: rgb(68, 68, 68) !important;
+    border-color: rgb(68, 68, 68) !important;
+    color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: rgb(21, 140, 145) !important;
+    border-color: rgb(21, 140, 145) !important;
+}
+
+.bg-blue {
+    background-color: rgb(28, 160, 165);
+}
+
+.bg-grey {
+    background-color: rgb(68, 68, 68);
+}
+
+.btn-primary:active {
+    background-color: rgb(19, 127, 131) !important;
+    border-color: rgb(19, 127, 131) !important;
+}
+
+.btn-outline-primary {
+    background-color: transparent !important;
+    border-color: rgb(28, 160, 165) !important;
+    color: rgb(28, 160, 165) !important;
+}
+
+.btn-outline-primary.white {
+    background-color: transparent !important;
+    border-color: rgb(255, 255, 255) !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgb(28, 160, 165) !important;
+    border-color: rgb(28, 160, 165) !important;
+    color: white !important;
+}
+
+.btn-outline-primary:active {
+    background-color: rgb(19, 127, 131) !important;
+    border-color: rgb(19, 127, 131) !important;
+    color: white !important;
+}
+
+.btn.menu {
+    border: none;
+}
+
+.btn.menu:focus {
+    border: none;
+}
+
+body {
+    background-color: rgb(250, 250, 250);
+}
+
+.nav-link {
+    color: white !important;
+    padding: 7px 10px !important;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: 0.3s !important;
+    margin: 0px 2px;
+}
+
+.nav-link:hover {
+    background-color: rgb(68, 68, 68);
+    transition: 0.3s;
+}
+
+.nav-link:active {
+    background-color: rgb(51, 51, 51) !important;
+    transition: 0.3s;
+}
+
+.nav-link.account {
+    color: rgb(28, 160, 165) !important;
+    padding:0px !important;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: 0.3s !important;
+    margin: 0px 2px;
+}
+
+.nav-link.account:hover {
+    transition: 0.3s;
+    color: rgb(68, 68, 68) !important;
+    background-color: transparent !important;
+}
+
+.nav-link.account:active {
+    transition: 0.3s;
+    color: rgb(51, 51, 51) !important;
+    background-color: transparent !important;
+}
+
+.text-grey {
+    color: rgb(68, 68, 68) !important;
+}
+
+nav {
+    background-color: rgb(28, 161, 166);
+}
+
+h1, h2, h3, h4, h5, strong {
+    color: rgb(28, 160, 165) !important;
+}
+
+li p {
+    color: rgb(48, 48, 48) !important;
+}
+
+footer p {
+    color: white;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.footer {
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(28, 161, 166);
+}
+
+.bg-img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: rgba(0, 0, 0, 0);
+    animation: fadeDark 1.5s 1 forwards;
+    /* height: 87vh; */
+    
+}
+
+.sm-bg-img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+}
+
+.sm-bg-img.home {
+    background-image: url(/Images/Screenshot.png);
+}
+
+.bg-img.login {
+    background-image: url(Images/bg.jpg);
+    height: 86vh;
+}
+
+.bg-img.signup {
+    background-image: url(Images/signup\ img.jpg);
+    /* height: 86vh; */
+    height: auto;
+}
+
+.bg-img.home {
+    background-image: url(https://images.squarespace-cdn.com/content/v1/589a36e7f5e23181d99a3824/1486950751194-SKO768AK9N53ANGYB26E/image-asset.jpeg);
+    background-color: rgba(0, 0, 0, 0.404);
+    height: auto;
+    min-height: 600px;
+    /* height: 87vh; */
+}
+
+.bg-img.contact {
+    background-image: url(Images/call\ centre\ man.jpg);
+    background-color: rgba(0, 0, 0, 0.404);
+    height: auto;
+    min-height: 600px;
+    /* height: 87vh; */
+}
+
+.bg-img.about {
+    background-image: url(Images/Home\ \(2\).png);
+    /* height: 600px; */
+    height: 93vh;
+}
+
+.bg-img.enquiry {
+    background-image: url(Images/call\ centre\ man.jpg);
+    background-color: rgba(0, 0, 0, 0.404);
+    height: auto;
+    min-height: 600px;
+    /* height: 87vh; */
+    animation: fadeDark 0s 1 forwards;
+}
+
+@keyframes slideUpAnimation{
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    } 
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.slideUpAnimation {
+    animation-name: slideUpAnimation;
+    animation-duration: 1.3s;
+    animation-delay: 1.2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.slideUpAnimation.about {
+    animation-delay: 0.5s;
+}
+
+.slideUpAnimation.pricing {
+    animation-delay: 0s;
+}
+
+.slideUpAnimation.dashboard {
+    animation-delay: 0.2s;
+}
+
+.slideUpAnimation.signup, .slideUpAnimation.login {
+    animation-delay: 0.2s;
+}
+
+@keyframes slideInLeftAnimation{
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    } 
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.slideInLeftAnimation {
+    animation-name: slideInLeftAnimation;
+    animation-duration: 1.3s;
+    animation-delay: 0.8s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+
+.slideInLeftAnimation.pricing {
+    animation-delay: 0.4s;
+}
+
+.slideInLeftAnimation.dashboard {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeDark {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+        background-color: rgba(0, 0, 0, 0.425);
+    }
+}
+
+@keyframes arrowAnimate {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(-10px);
+    }
+    100% {
+        transform: translateX(500px);
+    }
+
+}
+
+.arrowAnimate {
+    animation-name: arrowAnimate;
+    animation-duration: 1.3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.bgAlmostBlack {
+    background-color: rgba(0, 0, 0, 0.685);
+}
+
+.slideInLeftAnimation.text1 {
+    animation-delay: 1.5s;
+}
+
+.slideInLeftAnimation.text2 {
+    animation-delay: 1.8s;
+}
+
+.slideInLeftAnimation.btn1 {
+    animation-delay: 2.2s;
+}
+
+.slideInLeftAnimation.btn2 {
+    animation-delay: 2.5s;
+}
+
+.slideInLeftAnimation.btn3 {
+    animation-delay: 2.8s;
+}
+
+.myMargins {
+    max-width: 90%;
+    width: 90%;
+}
+
+.OR {
+    background-color: rgb(28, 160, 165);
+    min-height: 100px;
+    min-width: 100px;
+    max-height: 100px;
+    max-width: 100px;
+    border-radius: 50px;
+}
+
+#contactForm input:not(#question) {
+    border-radius: 5px;
+    border-color: gray;
+    border-width: 1.5px;
+    height: 50px;
+}
+
+#question {
+    border-radius: 5px;
+    border-color: gray;
+    border-width: 1.5px;
+    height: 200px;
+}
+
+@media (max-width: 768px) {
+    #greenTick {
+        height: 80px;
+    }
+
+    #pointDown {
+        width: 25%;
+    }
+}
+
+.slideInRight {
+    transform: translateX(1000px);
+    opacity: 0.5;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slideInRight.entry {
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+.slideInRight.exit {
+    transform: translateX(1000px);
+    opacity: 0;
+}
+
+.slider {
+    background-color: rgb(28, 160, 165);
+    width: 38px;
+    height: 20px;
+    padding: 2px;
+    border-radius: 10px;
+    position: relative;
+    border-color: transparent;
+}
+
+.sliderDot {
+    background-color: white;
+    height: 100%;
+    width: 18px;
+    border-radius: 9px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.sliderDot.moveRight {
+    transform: translateX(16px);
+    transition: 0.2s;
+}
+
+.sliderDot.moveLeft {
+    left: 0px;
+    transition: 0.2s;
+}
+
+.bar {
+    border-top: 15px solid rgb(28, 160, 165);
+    border-bottom: 15px solid rgb(28, 160, 165);
+}
+
+.accountCheckbox:checked {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(28, 160, 165) !important;
+    border-color: rgb(28, 160, 165);
+}
+
+.checkpoint:hover {
+    cursor: pointer;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.passwordInputField {
+    position: relative;
+}
+
+.showButton {
+    position: absolute;
+    right: 10px;
+    border: 0;
+    background-color: transparent;
+}
+
+.capitalizeFirstLetter::first-letter {
+    text-transform: capitalize;
+}
