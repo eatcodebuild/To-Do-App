@@ -114,8 +114,8 @@
                 const username = document.getElementById('usernameInput').value;
                 const password = document.getElementById('passwordInput').value;
 
-                // send login data to the server                        -------------------------------------------- changed end point ---------------------------
-                fetch(`${backendUrl}/login`, {
+                // send login data to the server 
+                fetch('/login', {
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ email: username, password })

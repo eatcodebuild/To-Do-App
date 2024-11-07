@@ -375,8 +375,8 @@ app.post('/signup', asyncHandler(async (req, res) => {
 
 
 
-// Existing user Login                                                  ----------------------------------------- changed the end point -----------------------------
-app.post(`${backendUrl}/login`, async (req, res) => {
+// Existing user Login 
+app.post('/login', async (req, res) => {
     const { email, password } = req.body;  // Changed 'username' to 'email'
     console.log('Login attempt:', { email, password });  // Debug log
 
