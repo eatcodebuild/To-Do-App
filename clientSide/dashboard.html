@@ -142,9 +142,9 @@
                     );  // Capitalize the first letter only
             };
         
-            // Fetch tasks from server and display them
+            // Fetch tasks from server and display them                  ------------------------------------------------------------
             function fetchTasks() {
-                fetch('/tasks')
+                fetch(`${backendUrl}/tasks`)
                     .then(response => response.json())
                     .then(tasks => {
                         todoList.innerHTML = '';
