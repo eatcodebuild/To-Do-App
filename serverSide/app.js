@@ -94,7 +94,7 @@ const contactSchema = new mongoose.Schema({
 const Contact = mongoose.model('Contact', contactSchema);
 
 
-const backendUrl = process.env.BACKEND_URL || "http://localhost:3000"; // fallback to local during development
+
 
 
 
