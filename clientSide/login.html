@@ -116,7 +116,7 @@
                 const password = document.getElementById('passwordInput').value;
 
                 // send login data to the server 
-                fetch(`${backendUrl}/login`, {
+                fetch('https://to-do-app-backend-alpha.vercel.app/login', {
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ email: username, password })
