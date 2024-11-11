@@ -92,7 +92,7 @@ const Contact = mongoose.model('Contact', contactSchema);
 
 
 
-
+const backendUrl = "https://to-do-app-backend-alpha.vercel.app";
 
 
 
@@ -115,7 +115,7 @@ app.get('/signup', (req, res) => {
 });
 
 // Serve the login page
-app.get('/login', (req, res) => {
+app.get(`${backendUrl}/login`, (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/login.html'));
 });
 
