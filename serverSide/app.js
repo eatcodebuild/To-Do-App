@@ -92,10 +92,6 @@ const Contact = mongoose.model('Contact', contactSchema);
 
 
 
-const backendUrl = "https://to-do-app-backend-alpha.vercel.app";
-
-
-
 // Serve the static files from the Front End Directory > Lookup
 app.use(express.static(path.join(__dirname, '../clientSide')));
 
@@ -115,7 +111,7 @@ app.get('/signup', (req, res) => {
 });
 
 // Serve the login page
-app.get(`${backendUrl}/login`, (req, res) => {
+app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/login.html'));
 });
 
