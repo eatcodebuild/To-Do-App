@@ -7,11 +7,8 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const cors = require('cors');
-// app.use(cors({
-//     origin: '*',  // Allow all origins for now, but you should restrict it in production
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// }));
+app.use(cors({ origin: "https://to-do-app-backend-alpha.vercel.app/", credentials: true }));
+
 require('dotenv').config();
 
 
@@ -118,7 +115,7 @@ app.get('/signup', (req, res) => {
 });
 
 // Serve the login page
-app.get(`${backendUrl}/login`, (req, res) => {
+app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/login.html'));
 });
 
