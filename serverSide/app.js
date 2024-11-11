@@ -7,7 +7,8 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const cors = require('cors');
-app.use(cors({ origin: "https://to-do-app-backend-alpha.vercel.app/", credentials: true }));
+app.use(cors({ origin: "*", credentials: true }));
+
 
 require('dotenv').config();
 
