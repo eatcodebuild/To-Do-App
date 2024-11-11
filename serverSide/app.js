@@ -541,3 +541,10 @@ app.post('/reset_password/:token', async (req, res) => {
 // app.listen(PORT, ()=> {
 //     console.log(`Server listening on port ${PORT}`);
 // });
+
+
+// Run server
+const SERVER = 'https://to-do-app-backend-alpha.vercel.app';
+app.listen(SERVER, ()=> {
+    console.log(`Server listening on Server ${SERVER}`);
+});
