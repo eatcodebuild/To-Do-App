@@ -7,11 +7,12 @@
     "routes": [
         {
             "src": "/api/(.*)", 
-            "dest": "serverSide/app.js"
+            "dest": "/app.js"
         },
         {
             "src": "/(.*)",
             "dest": "/clientSide/$1"
         }
+
     ]
 }
