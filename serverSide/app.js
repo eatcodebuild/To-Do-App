@@ -112,7 +112,7 @@ app.get('/signup', (req, res) => {
 });
 
 // Serve the login page
-app.get('/login', (req, res) => {
+app.get('https://to-do-app-backend-alpha.vercel.app/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/login.html'));
 });
 
