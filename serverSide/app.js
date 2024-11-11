@@ -536,8 +536,8 @@ app.post('/reset_password/:token', async (req, res) => {
 
 
 
-// Run server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, ()=> {
-    console.log(`Server listening on port ${PORT}`);
-});
+// // Run server
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, ()=> {
+//     console.log(`Server listening on port ${PORT}`);
+// });
