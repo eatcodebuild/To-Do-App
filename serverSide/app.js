@@ -112,7 +112,7 @@ app.get('/signup', (req, res) => {
 });
 
 // Serve the login page
-app.get('https://to-do-app-backend-alpha.vercel.app/login', (req, res) => {
+app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/login.html'));
 });
 
@@ -370,7 +370,7 @@ app.post('/signup', asyncHandler(async (req, res) => {
 
 
 // Existing user Login 
-app.post('https://to-do-app-backend-alpha.vercel.app/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     const { email, password } = req.body;  // Changed 'username' to 'email'
     console.log('Login attempt:', { email, password });  // Debug log
 
