@@ -186,15 +186,15 @@ app.get('/testing', (req, res) => {
 
 
 // // Routes
-app.get('/tasks', isAuthenticated, async (req, res) => {  
-    try {
-        const userId = req.session.userId;
-        const tasks = await Task.find({ user: userId });
-        res.json(tasks);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+// app.get('/tasks', isAuthenticated, async (req, res) => {  
+//     try {
+//         const userId = req.session.userId;
+//         const tasks = await Task.find({ user: userId });
+//         res.json(tasks);
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// });
 
 
 
