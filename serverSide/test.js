@@ -186,15 +186,15 @@ app.get('/testing', (req, res) => {
 
 
 // // Routes
-// app.get('/tasks', isAuthenticated, async (req, res) => {  
-//     try {
-//         const userId = req.session.userId;
-//         const tasks = await Task.find({ user: userId });
-//         res.json(tasks);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// });
+app.get('/tasks', isAuthenticated, async (req, res) => {  
+    try {
+        const userId = req.session.userId;
+        const tasks = await Task.find({ user: userId });
+        res.json(tasks);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 
@@ -215,63 +215,63 @@ app.get('/testing', (req, res) => {
 
 
 
-// app.get('/user_info', isAuthenticated, async (req, res) => {
-//     const userId = req.session.userId;
+app.get('/user_info', isAuthenticated, async (req, res) => {
+    const userId = req.session.userId;
 
-//     try {
-//         const user = await User.findById(userId).select('firstName lastName');
-//         if (user) {
-//             res.json({ firstName: user.firstName, lastName: user.lastName });
-//         } else {
-//             res.status(404).json({ message: 'User not found' });
-//         }
-//     } catch (err) {
-//         res.status(500).json({ message: 'Error fetching user info' });
-//     }
-// });
+    try {
+        const user = await User.findById(userId).select('firstName lastName');
+        if (user) {
+            res.json({ firstName: user.firstName, lastName: user.lastName });
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (err) {
+        res.status(500).json({ message: 'Error fetching user info' });
+    }
+});
 
 
 
-// app.post('/contact', async (req, res) => {
-//     const { firstName, lastName, email, question } = req.body;
+app.post('/contact', async (req, res) => {
+    const { firstName, lastName, email, question } = req.body;
 
-//     try {
-//         if (!firstName || !lastName || !email || !question) {
-//             return res.status(400).json({ message: 'All fields are required.' });
-//         }
-//         const contactEntry = new Contact({ 
-//             firstName, 
-//             lastName, 
-//             email, 
-//             question 
-//         });
+    try {
+        if (!firstName || !lastName || !email || !question) {
+            return res.status(400).json({ message: 'All fields are required.' });
+        }
+        const contactEntry = new Contact({ 
+            firstName, 
+            lastName, 
+            email, 
+            question 
+        });
 
-//         await contactEntry.save();
+        await contactEntry.save();
 
-//         const transporter = nodemailer.createTransport({                      // ← ← ← FAKE EMAIL FOR TESTING "Mailtrap.io"
-//             host: "sandbox.smtp.mailtrap.io",
-//             port: 2525,
-//             auth: {
-//                 user: "ccafd03fd41ca6",
-//                 pass: "476e4a8a8f72f0"
-//             }
-//         });
+        const transporter = nodemailer.createTransport({                      // ← ← ← FAKE EMAIL FOR TESTING "Mailtrap.io"
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
+            auth: {
+                user: "ccafd03fd41ca6",
+                pass: "476e4a8a8f72f0"
+            }
+        });
 
-//         const mailOptions = {
-//             to: email,
-//             from: process.env.COMPANY_EMAIL || 'fallbackEmailUser',
-//             subject: 'Thanks For Contacting Us!',
-//             text: `Hi ${firstName}!\n\nThanks for reaching out! Your message has been received and one of our friendly staff will be in touch with you soon!\n\nBest regards,\nTo Do Team`
-//         };
+        const mailOptions = {
+            to: email,
+            from: process.env.COMPANY_EMAIL || 'fallbackEmailUser',
+            subject: 'Thanks For Contacting Us!',
+            text: `Hi ${firstName}!\n\nThanks for reaching out! Your message has been received and one of our friendly staff will be in touch with you soon!\n\nBest regards,\nTo Do Team`
+        };
 
-//         await transporter.sendMail(mailOptions);
-//         res.status(201).json({ success: true, message: 'Contact form submitted successfully!' });
+        await transporter.sendMail(mailOptions);
+        res.status(201).json({ success: true, message: 'Contact form submitted successfully!' });
 
-//     } catch (err) {
-//         console.error('Error handling contact form submission:', err);
-//         res.status(500).json({ success: false, message: 'Internal server error.' });
-//     }
-// });
+    } catch (err) {
+        console.error('Error handling contact form submission:', err);
+        res.status(500).json({ success: false, message: 'Internal server error.' });
+    }
+});
 
 
 
@@ -301,37 +301,37 @@ app.get('/testing', (req, res) => {
 
 
 // // Edit / Update task
-// app.patch('/tasks/:taskId', async (req, res) => {
-//     try {
-//         const { taskId } = req.params;
-//         const { title, description, dueDate, completed } = req.body;
-//         const userId = req.session.userId;
+app.patch('/tasks/:taskId', async (req, res) => {
+    try {
+        const { taskId } = req.params;
+        const { title, description, dueDate, completed } = req.body;
+        const userId = req.session.userId;
 
-//         const update = {
-//             ...(title && { title }),
-//             ...(description && { description }),
-//             ...(dueDate && { dueDate }),
-//             ...(completed !== undefined && { completed }),
-//             dateCompleted: completed ? new Date() : null
-//         };
+        const update = {
+            ...(title && { title }),
+            ...(description && { description }),
+            ...(dueDate && { dueDate }),
+            ...(completed !== undefined && { completed }),
+            dateCompleted: completed ? new Date() : null
+        };
 
-//         console.log('Update Object:', update); // Log the update object
+        console.log('Update Object:', update); // Log the update object
 
-//         const updatedTask = await Task.findOneAndUpdate(
-//             { _id: taskId, user: userId }, 
-//             update, 
-//             { new: true }
-//         );
+        const updatedTask = await Task.findOneAndUpdate(
+            { _id: taskId, user: userId }, 
+            update, 
+            { new: true }
+        );
 
-//         if (!updatedTask) {
-//             return res.status(404).json({ message: 'Task not found' });
-//         }
+        if (!updatedTask) {
+            return res.status(404).json({ message: 'Task not found' });
+        }
 
-//         res.json(updatedTask);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// });
+        res.json(updatedTask);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 
@@ -378,46 +378,46 @@ app.get('/testing', (req, res) => {
 
 
 // // Existing user Login 
-// app.post('/login', async (req, res) => {
-//     const { email, password } = req.body;  // Changed 'username' to 'email'
-//     console.log('Login attempt:', { email, password });  // Debug log
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;  // Changed 'username' to 'email'
+    console.log('Login attempt:', { email, password });  // Debug log
 
-//     try {
-//         const user = await User.findOne({ email: email.toLowerCase() });  // Check user by email
-//         console.log('Found user:', user);  // Debug log
-//         if (!user) {
-//             return res.status(404).json({ message: 'User not found' });
-//         }
+    try {
+        const user = await User.findOne({ email: email.toLowerCase() });  // Check user by email
+        console.log('Found user:', user);  // Debug log
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
 
-//         const passwordMatch = await bcrypt.compare(password, user.password);
-//         if (!passwordMatch) {
-//             return res.status(401).json({ message: 'Incorrect password' });
-//         }
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: 'Incorrect password' });
+        }
 
-//         // Regenerate session to prevent session fixation attacks
-//         req.session.regenerate((err) => {
-//             if (err) {
-//                 return res.status(500).send('Failed to regenerate session');
-//             }
+        // Regenerate session to prevent session fixation attacks
+        req.session.regenerate((err) => {
+            if (err) {
+                return res.status(500).send('Failed to regenerate session');
+            }
 
-//             // Save user ID in the session after regeneration
-//             req.session.userId = user._id;
+            // Save user ID in the session after regeneration
+            req.session.userId = user._id;
 
-//             // Save the session and then redirect the user
-//             req.session.save((err) => {
-//                 if (err) {
-//                     return res.status(500).send('Failed to save session');
-//                 }
+            // Save the session and then redirect the user
+            req.session.save((err) => {
+                if (err) {
+                    return res.status(500).send('Failed to save session');
+                }
 
-//                 res.redirect('/dashboard');
-//             });
-//         });
+                res.redirect('/dashboard');
+            });
+        });
 
-//     } catch (err) {
-//         console.error('Login error:', err);
-//         res.status(500).json({ message: 'Internal server error' });
-//     }
-// });
+    } catch (err) {
+        console.error('Login error:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 
 
@@ -437,59 +437,59 @@ app.get('/testing', (req, res) => {
 
 
 // // Forgot Password / sends email to user with a reset link
-// app.post('/forgot_password', async (req, res) => {
-//     const { email } = req.body;
+app.post('/forgot_password', async (req, res) => {
+    const { email } = req.body;
 
-//     console.log("Received request for password reset");  // Add log
-//     console.log("Email:", email);  // Log the email input
+    console.log("Received request for password reset");  // Add log
+    console.log("Email:", email);  // Log the email input
 
-//     try {
-//         const user = await User.findOne({ email: email.toLowerCase() });
-//         if (!user) {
-//             console.log("No user found with this email");  // Add log for no user
-//             return res.status(400).send('No account with this email exists!');
-//         } else {
-//             console.log('Found User')
-//             console.log(require('dotenv').config());
-//         }
+    try {
+        const user = await User.findOne({ email: email.toLowerCase() });
+        if (!user) {
+            console.log("No user found with this email");  // Add log for no user
+            return res.status(400).send('No account with this email exists!');
+        } else {
+            console.log('Found User')
+            console.log(require('dotenv').config());
+        }
 
-//         const token = crypto.randomBytes(20).toString('hex');
-//         const resetTokenExpiry = Date.now() + 3600000; // 1 hour
+        const token = crypto.randomBytes(20).toString('hex');
+        const resetTokenExpiry = Date.now() + 3600000; // 1 hour
 
-//         user.resetPasswordToken = token;
-//         user.resetPasswordExpires = resetTokenExpiry;
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = resetTokenExpiry;
 
-//         await user.save();
+        await user.save();
 
-//         const transporter = nodemailer.createTransport({                                        // ← ← ← FAKE EMAIL FOR TESTING "Mailtrap.io"
-//             host: "sandbox.smtp.mailtrap.io",
-//             port: 2525,
-//             auth: {
-//             user: "ccafd03fd41ca6",
-//             pass: "476e4a8a8f72f0"
-//             }
-//         });
+        const transporter = nodemailer.createTransport({                                        // ← ← ← FAKE EMAIL FOR TESTING "Mailtrap.io"
+            host: "sandbox.smtp.mailtrap.io",
+            port: 2525,
+            auth: {
+            user: "ccafd03fd41ca6",
+            pass: "476e4a8a8f72f0"
+            }
+        });
 
-//         const mailOptions = {
-//             to: user.email,
-//             from:  process.env.COMPANY_EMAIL || 'fallbackEmailUser',
-//             subject: 'Password Reset',
-//             text: `You are receiving this because you requested the reset of your account password.\n\n` +
-//                 `Please click on the following link, or paste this into your browser to complete the process:\n\n` +
-//                 `http://localhost:3000/reset_password/${token}\n\n` +
-//                 `If you did not request this, please ignore this email.\n`,
-//         };
+        const mailOptions = {
+            to: user.email,
+            from:  process.env.COMPANY_EMAIL || 'fallbackEmailUser',
+            subject: 'Password Reset',
+            text: `You are receiving this because you requested the reset of your account password.\n\n` +
+                `Please click on the following link, or paste this into your browser to complete the process:\n\n` +
+                `http://localhost:3000/reset_password/${token}\n\n` +
+                `If you did not request this, please ignore this email.\n`,
+        };
 
         
 
-//         await transporter.sendMail(mailOptions);
-//         res.status(200).send('Password reset email sent.');
+        await transporter.sendMail(mailOptions);
+        res.status(200).send('Password reset email sent.');
 
-//     } catch (err) {
-//         console.error('Error in forgot password route:', err);
-//         res.status(500).send('Internal server error.');
-//     }
-// });
+    } catch (err) {
+        console.error('Error in forgot password route:', err);
+        res.status(500).send('Internal server error.');
+    }
+});
 
 
 
@@ -506,40 +506,40 @@ app.get('/testing', (req, res) => {
 
 
 // // Route to handle new password submission
-// app.post('/reset_password/:token', async (req, res) => {
-//     const { newPasswordInput, confirmNewPasswordInput } = req.body;
+app.post('/reset_password/:token', async (req, res) => {
+    const { newPasswordInput, confirmNewPasswordInput } = req.body;
 
-//     try {
-//         const user = await User.findOne({
-//             resetPasswordToken: req.params.token,
-//             resetPasswordExpires: { $gt: Date.now() } // Ensure token has not expired
-//         });
+    try {
+        const user = await User.findOne({
+            resetPasswordToken: req.params.token,
+            resetPasswordExpires: { $gt: Date.now() } // Ensure token has not expired
+        });
 
-//         if (!user) {
-//             return res.status(400).send('Password reset token is invalid or has expired.');
-//         }
+        if (!user) {
+            return res.status(400).send('Password reset token is invalid or has expired.');
+        }
 
-//         // Validate passwords
-//         if (newPasswordInput !== confirmNewPasswordInput) {
-//             return res.status(400).send('Passwords do not match.');
-//         }
+        // Validate passwords
+        if (newPasswordInput !== confirmNewPasswordInput) {
+            return res.status(400).send('Passwords do not match.');
+        }
 
-//         const hashedPassword = await bcrypt.hash(newPasswordInput, 10);
+        const hashedPassword = await bcrypt.hash(newPasswordInput, 10);
 
-//         // Updating the user with the new password and clear the reset token and expiry
-//         user.password = hashedPassword;
-//         user.resetPasswordToken = undefined;
-//         user.resetPasswordExpires = undefined;
-//         await user.save();
+        // Updating the user with the new password and clear the reset token and expiry
+        user.password = hashedPassword;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+        await user.save();
 
-//         res.redirect('/success');  // Redirecting after password reset
-//         console.log('Password Reset Success!');
+        res.redirect('/success');  // Redirecting after password reset
+        console.log('Password Reset Success!');
 
-//     } catch (err) {
-//         console.error('Error resetting password:', err);
-//         res.status(500).send('Internal server error.');
-//     }
-// });
+    } catch (err) {
+        console.error('Error resetting password:', err);
+        res.status(500).send('Internal server error.');
+    }
+});
 
 
 
