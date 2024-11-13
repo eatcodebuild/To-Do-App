@@ -337,41 +337,41 @@ app.patch('/tasks/:taskId', async (req, res) => {
 
 
 // // New user Signup
-// app.post('/signup', asyncHandler(async (req, res) => {
-//     const { email, password, firstName, lastName } = req.body;
+app.post('/signup', asyncHandler(async (req, res) => {
+    const { email, password, firstName, lastName } = req.body;
 
-//     // Password Requirements
-//     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+    // Password Requirements
+    const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
-//     if (!passwordPattern.test(password)) {
-//         return res.status(400).json({ message: 'Password does not meet requirements' });
-//     }
+    if (!passwordPattern.test(password)) {
+        return res.status(400).json({ message: 'Password does not meet requirements' });
+    }
     
 
-//     try {
-//         const existingUser = await User.findOne({ email: email.toLowerCase() });
-//         if (existingUser) {
-//             return res.status(400).json({ message: 'Username already taken'});
-//         }
+    try {
+        const existingUser = await User.findOne({ email: email.toLowerCase() });
+        if (existingUser) {
+            return res.status(400).json({ message: 'Username already taken'});
+        }
 
-//         // Hash the password
-//         const hashedPassword = await bcrypt.hash(password, 10);
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-//         // Create the user
-//         const newUser = new User({ email, password: hashedPassword, firstName, lastName });
+        // Create the user
+        const newUser = new User({ email, password: hashedPassword, firstName, lastName });
         
 
-//         // Save new user to database
-//         await newUser.save();
-//         console.log('User saved successfully!');
+        // Save new user to database
+        await newUser.save();
+        console.log('User saved successfully!');
 
-//         res.status(201).json({ message: 'User created successfully' });
+        res.status(201).json({ message: 'User created successfully' });
 
-//     } catch (err) {
-//         console.error('Error ceating user:', err);
-//         res.status(400).json({ message: err.message })
-//     }
-// }));
+    } catch (err) {
+        console.error('Error ceating user:', err);
+        res.status(400).json({ message: err.message })
+    }
+}));
 
 
 
