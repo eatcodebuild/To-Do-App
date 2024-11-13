@@ -200,16 +200,16 @@ app.get('/tasks', isAuthenticated, async (req, res) => {
 
 
 // Deleting Task
-app.delete('/delete-task/:id', async (req, res) => {
-    const taskId = req.params.id;
+// app.delete('/delete-task/:id', async (req, res) => {
+//     const taskId = req.params.id;
     
-    try {
-        await Task.findByIdAndDelete(taskId);
-        res.json({ success: true });
-    } catch (error) {
-        res.json({ success: false, error });
-    }
-});
+//     try {
+//         await Task.findByIdAndDelete(taskId);
+//         res.json({ success: true });
+//     } catch (error) {
+//         res.json({ success: false, error });
+//     }
+// });
 
 
 
