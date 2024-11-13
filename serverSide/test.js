@@ -168,25 +168,25 @@ app.get('/testing', (req, res) => {
 
 
 
-// function isAuthenticated(req, res, next) {
-//     if (req.session.userId) {
-//         return next();
-//     } else {
-//         res.redirect('/login');
-//     }
-// }
+function isAuthenticated(req, res, next) {
+    if (req.session.userId) {
+        return next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
 
 
-// const asyncHandler = fn => (req, res, next) => {
-//     Promise.resolve(fn(req, res, next)).catch(next);
-// };
+const asyncHandler = fn => (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+};
 
 
 
 
 // Routes
-// app.get('/tasks', isAuthenticated, async (req, res) => {  
+// app.get('/tasks', isAuthenticated, async (req, res) => {                                // ***** there is an issue in here preventing me from deploying on vercel *****
 //     try {
 //         const userId = req.session.userId;
 //         const tasks = await Task.find({ user: userId });
@@ -215,7 +215,7 @@ app.delete('/delete-task/:id', async (req, res) => {
 
 
 
-// app.get('/user_info', isAuthenticated, async (req, res) => {                                      // ***** there is an issue in here preventing me from deploying on vercel *****
+// app.get('/user_info', isAuthenticated, async (req, res) => {                            // ***** there is an issue in here preventing me from deploying on vercel *****
 //     const userId = req.session.userId;
         
 //     try {
@@ -277,25 +277,25 @@ app.post('/contact', async (req, res) => {
 
 
 
-// // Send information to the database
-// app.post('/tasks', async (req, res) => {
-//     const { title, description, dueDate } = req.body;
-//     const userId = req.session.userId;
+// Send information to the database
+app.post('/tasks', async (req, res) => {
+    const { title, description, dueDate } = req.body;
+    const userId = req.session.userId;
 
-//     const task = new Task({
-//         title,
-//         description,
-//         completed: false,
-//         dueDate,
-//         user: userId
-//     });
-//     try {
-//         const newTask = await task.save();
-//         res.status(201).json(newTask);
-//     } catch (err) {
-//         res.status(400).json({ message: err.message});
-//     }
-// });
+    const task = new Task({
+        title,
+        description,
+        completed: false,
+        dueDate,
+        user: userId
+    });
+    try {
+        const newTask = await task.save();
+        res.status(201).json(newTask);
+    } catch (err) {
+        res.status(400).json({ message: err.message});
+    }
+});
 
 
 
