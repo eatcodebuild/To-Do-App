@@ -160,7 +160,7 @@ app.get('/success', (req, res) => {
 
 
 // test for deployment
-app.get('/tester', (req, res) => {
+app.get('/testing', (req, res) => {
     res.status(200).json('hello, this is working')
 });
 
