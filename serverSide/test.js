@@ -422,15 +422,15 @@ app.post('/login', async (req, res) => {
 
 
 
-// // User Logout / destroy session
-// app.get('/logout', async (req, res) => {
-//     req.session.destroy(err => {
-//         if(err) {
-//             return res.status(401).json({ message: 'Failed to logout' });
-//         }
-//         res.redirect('/login');
-//     });
-// });
+// User Logout / destroy session
+app.get('/logout', async (req, res) => {
+    req.session.destroy(err => {
+        if(err) {
+            return res.status(401).json({ message: 'Failed to logout' });
+        }
+        res.redirect('/login');
+    });
+});
 
 
 
@@ -494,13 +494,13 @@ app.post('/forgot_password', async (req, res) => {
 
 
 
-// app.get('/reset_password/:token', async (req, res) => {
-//     const user = await User.findOne({ resetPasswordToken: req.params.token });
-//     if (!user) {
-//         return res.status(400).send('Invalid token');
-//     }
-//     res.render('reset_password', { token: req.params.token });
-// });
+app.get('/reset_password/:token', async (req, res) => {
+    const user = await User.findOne({ resetPasswordToken: req.params.token });
+    if (!user) {
+        return res.status(400).send('Invalid token');
+    }
+    res.render('reset_password', { token: req.params.token });
+});
 
 
 
