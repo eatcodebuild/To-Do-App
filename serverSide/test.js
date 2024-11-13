@@ -36,19 +36,19 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection 
 
 
 
-// // Middleware Connection
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded bodies
+// Middleware Connection
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded bodies
 
 
-// // Initialize a session key
-// app.use(session({
-//     secret: process.env.SESSION_SECRET || 'fallback_secret_key',
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: { maxAge: 3600000 }  // 1 hour
+// Initialize a session key
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'fallback_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 3600000 }  // 1 hour
 
-// }));
+}));
 
 
 
