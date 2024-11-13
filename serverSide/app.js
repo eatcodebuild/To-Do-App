@@ -114,8 +114,7 @@ app.get('/signup', (req, res) => {
 
 // Serve the login page
 app.get('/login', (req, res) => {
-    // res.sendFile(path.join(__dirname, '../clientSide/login.html'));
-    res.status(200).json("hello");
+    res.sendFile(path.join(__dirname, '../clientSide/login.html'));
 });
 
 // Serve the contact page
@@ -156,6 +155,13 @@ app.get('/link_sent', (req, res) => {
 // Serve the success reset password page
 app.get('/success', (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/passwordResetSuccess.html'));
+});
+
+
+
+// test for deployment
+app.get('/test', (req, res) => {
+    res.status(200).json('hello, this is working')
 });
 
 
