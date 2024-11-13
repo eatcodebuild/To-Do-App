@@ -67,16 +67,16 @@ app.use(session({
 
 
 
-// // Database/task Model
-// const Task = mongoose.model('Task', {
-//     title: String,
-//     description: String,
-//     completed: Boolean,
-//     dueDate: Date,
-//     dateCompleted: Date,
-//     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-//     createdAt: { type: Date, default: Date.now }
-// });
+// Database/task Model
+const Task = mongoose.model('Task', {
+    title: String,
+    description: String,
+    completed: Boolean,
+    dueDate: Date,
+    dateCompleted: Date,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    createdAt: { type: Date, default: Date.now }
+});
 
 
 
