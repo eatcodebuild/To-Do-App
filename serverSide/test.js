@@ -24,7 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-// MongoDB Connection                                                                      // ***** there is an issue in here preventing me from deploying on vercel *****s
+// MongoDB Connection                                                                      
 mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -186,15 +186,15 @@ const asyncHandler = fn => (req, res, next) => {
 
 
 // Routes
-// app.get('/tasks', isAuthenticated, async (req, res) => {                                // ***** there is an issue in here preventing me from deploying on vercel *****
-//     try {
-//         const userId = req.session.userId;
-//         const tasks = await Task.find({ user: userId });
-//         res.json(tasks);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// });
+app.get('/tasks', isAuthenticated, async (req, res) => {                                // ***** there is an issue in here preventing me from deploying on vercel *****
+    try {
+        const userId = req.session.userId;
+        const tasks = await Task.find({ user: userId });
+        res.json(tasks);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 
