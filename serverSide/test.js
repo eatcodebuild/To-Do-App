@@ -24,73 +24,73 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+// // MongoDB Connection
+// mongoose.connect(process.env.MONGODB, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// });
 
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
-
-
-
-
-
-// Middleware Connection
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded bodies
-
-
-// Initialize a session key
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'fallback_secret_key',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 3600000 }  // 1 hour
-
-}));
+// mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
 
 
 
 
-// Database/User Model
-const userSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    firstName: String,
-    lastName: String,
-    resetPasswordToken: String,
-    resetPasswordExpires: Date,
-});
 
-const User = mongoose.model('User', userSchema);
+// // Middleware Connection
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded bodies
 
 
+// // Initialize a session key
+// app.use(session({
+//     secret: process.env.SESSION_SECRET || 'fallback_secret_key',
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: { maxAge: 3600000 }  // 1 hour
 
-// Database/task Model
-const Task = mongoose.model('Task', {
-    title: String,
-    description: String,
-    completed: Boolean,
-    dueDate: Date,
-    dateCompleted: Date,
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-    createdAt: { type: Date, default: Date.now }
-});
+// }));
 
 
 
 
-// Database/Contact Form Model
-const contactSchema = new mongoose.Schema({
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    email: { type: String, required: true },
-    question: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
-});
+// // Database/User Model
+// const userSchema = new mongoose.Schema({
+//     email: { type: String, required: true, unique: true },
+//     password: { type: String, required: true },
+//     firstName: String,
+//     lastName: String,
+//     resetPasswordToken: String,
+//     resetPasswordExpires: Date,
+// });
 
-const Contact = mongoose.model('Contact', contactSchema);
+// const User = mongoose.model('User', userSchema);
+
+
+
+// // Database/task Model
+// const Task = mongoose.model('Task', {
+//     title: String,
+//     description: String,
+//     completed: Boolean,
+//     dueDate: Date,
+//     dateCompleted: Date,
+//     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+//     createdAt: { type: Date, default: Date.now }
+// });
+
+
+
+
+// // Database/Contact Form Model
+// const contactSchema = new mongoose.Schema({
+//     firstName: { type: String, required: true },
+//     lastName: { type: String, required: true },
+//     email: { type: String, required: true },
+//     question: { type: String, required: true },
+//     createdAt: { type: Date, default: Date.now }
+// });
+
+// const Contact = mongoose.model('Contact', contactSchema);
 
 
 
