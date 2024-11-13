@@ -6,9 +6,7 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const cors = require('cors');
 const PORT = 3000
-// app.use(cors({ origin: "*", credentials: true }));
 
 
 require('dotenv').config();
@@ -215,7 +213,7 @@ app.delete('/delete-task/:id', async (req, res) => {
 
 
 
-app.get('/user_info', isAuthenticated, async (req, res) => {                            // ***** there is an issue in here preventing me from deploying on vercel *****
+app.get('/user_info', isAuthenticated, async (req, res) => {                            
     const userId = req.session.userId;
         
     try {
