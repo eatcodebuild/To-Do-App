@@ -8,7 +8,7 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const cors = require('cors');
 const PORT = 3000
-app.use(cors({ origin: "*", credentials: true }));
+// app.use(cors({ origin: "*", credentials: true }));
 
 
 require('dotenv').config();
@@ -537,9 +537,10 @@ app.post('/reset_password/:token', async (req, res) => {
 
 
 
+
 // Run server
 app.listen(PORT, ()=> {
-    console.log(`Server listening on port ${PORT}`);
+    console.log(`Server listening http://localhost:${PORT}`);
 });
 
 
