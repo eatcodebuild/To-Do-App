@@ -24,7 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-// // // MongoDB Connection
+// // // MongoDB Connection                                                                      // ***** there is an issue in here preventing me from deploying on vercel *****
 // mongoose.connect(process.env.MONGODB, {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true,
@@ -53,17 +53,17 @@ app.use(session({
 
 
 
-// // Database/User Model
-// const userSchema = new mongoose.Schema({
-//     email: { type: String, required: true, unique: true },
-//     password: { type: String, required: true },
-//     firstName: String,
-//     lastName: String,
-//     resetPasswordToken: String,
-//     resetPasswordExpires: Date,
-// });
+// Database/User Model
+const userSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    firstName: String,
+    lastName: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
+});
 
-// const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 
 
@@ -81,16 +81,16 @@ const Task = mongoose.model('Task', {
 
 
 
-// // Database/Contact Form Model
-// const contactSchema = new mongoose.Schema({
-//     firstName: { type: String, required: true },
-//     lastName: { type: String, required: true },
-//     email: { type: String, required: true },
-//     question: { type: String, required: true },
-//     createdAt: { type: Date, default: Date.now }
-// });
+// Database/Contact Form Model
+const contactSchema = new mongoose.Schema({
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    email: { type: String, required: true },
+    question: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now }
+});
 
-// const Contact = mongoose.model('Contact', contactSchema);
+const Contact = mongoose.model('Contact', contactSchema);
 
 
 
