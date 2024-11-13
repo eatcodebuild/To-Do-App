@@ -24,13 +24,13 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-// // // MongoDB Connection                                                                      // ***** there is an issue in here preventing me from deploying on vercel *****
+// // // MongoDB Connection                                                                      // ***** there is an issue in here preventing me from deploying on vercel *****s
 // mongoose.connect(process.env.MONGODB, {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true,
 // });
 
-// mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
 
 
 
