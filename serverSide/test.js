@@ -185,39 +185,39 @@ app.get('/testing', (req, res) => {
 
 
 
-// // Routes
-// app.get('/tasks', isAuthenticated, async (req, res) => {  
-//     try {
-//         const userId = req.session.userId;
-//         const tasks = await Task.find({ user: userId });
-//         res.json(tasks);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// });
+// Routes
+app.get('/tasks', isAuthenticated, async (req, res) => {  
+    try {
+        const userId = req.session.userId;
+        const tasks = await Task.find({ user: userId });
+        res.json(tasks);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 
 
 
-// // Deleting Task
-// app.delete('/delete-task/:id', async (req, res) => {
-//     const taskId = req.params.id;
+// Deleting Task
+app.delete('/delete-task/:id', async (req, res) => {
+    const taskId = req.params.id;
     
-//     try {
-//         await Task.findByIdAndDelete(taskId);
-//         res.json({ success: true });
-//     } catch (error) {
-//         res.json({ success: false, error });
-//     }
-// });
+    try {
+        await Task.findByIdAndDelete(taskId);
+        res.json({ success: true });
+    } catch (error) {
+        res.json({ success: false, error });
+    }
+});
 
 
 
 
 
-// app.get('/user_info', isAuthenticated, async (req, res) => {
+// app.get('/user_info', isAuthenticated, async (req, res) => {                                      // ***** there is an issue in here preventing me from deploying on vercel *****
 //     const userId = req.session.userId;
-
+        
 //     try {
 //         const user = await User.findById(userId).select('firstName lastName');
 //         if (user) {
