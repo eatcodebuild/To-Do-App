@@ -7,6 +7,7 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const cors = require('cors');
+const PORT = 3000
 app.use(cors({ origin: "*", credentials: true }));
 
 
@@ -537,7 +538,6 @@ app.post('/reset_password/:token', async (req, res) => {
 
 
 // Run server
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=> {
     console.log(`Server listening on port ${PORT}`);
 });
