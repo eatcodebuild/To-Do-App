@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 // MongoDB Connection                                                                      // ***** there is an issue in here preventing me from deploying on vercel *****s
-mongoose.connect('mongodb+srv://Ryan:ryan301096@todoapp.6a8646h.mongodb.net/?retryWrites=true&w=majority&appName=ToDoApp', {
+mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
