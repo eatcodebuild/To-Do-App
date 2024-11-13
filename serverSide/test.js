@@ -24,138 +24,138 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-// // MongoDB Connection
-// mongoose.connect(process.env.MONGODB, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// });
+// MongoDB Connection
+mongoose.connect(process.env.MONGODB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
-// mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
-
-
-
-
-
-// // Middleware Connection
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded bodies
-
-
-// // Initialize a session key
-// app.use(session({
-//     secret: process.env.SESSION_SECRET || 'fallback_secret_key',
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: { maxAge: 3600000 }  // 1 hour
-
-// }));
+mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
 
 
 
 
-// // Database/User Model
-// const userSchema = new mongoose.Schema({
-//     email: { type: String, required: true, unique: true },
-//     password: { type: String, required: true },
-//     firstName: String,
-//     lastName: String,
-//     resetPasswordToken: String,
-//     resetPasswordExpires: Date,
-// });
 
-// const User = mongoose.model('User', userSchema);
+// Middleware Connection
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // To parse URL-encoded bodies
 
 
+// Initialize a session key
+app.use(session({
+    secret: process.env.SESSION_SECRET || 'fallback_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 3600000 }  // 1 hour
 
-// // Database/task Model
-// const Task = mongoose.model('Task', {
-//     title: String,
-//     description: String,
-//     completed: Boolean,
-//     dueDate: Date,
-//     dateCompleted: Date,
-//     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-//     createdAt: { type: Date, default: Date.now }
-// });
+}));
 
 
 
 
-// // Database/Contact Form Model
-// const contactSchema = new mongoose.Schema({
-//     firstName: { type: String, required: true },
-//     lastName: { type: String, required: true },
-//     email: { type: String, required: true },
-//     question: { type: String, required: true },
-//     createdAt: { type: Date, default: Date.now }
-// });
+// Database/User Model
+const userSchema = new mongoose.Schema({
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    firstName: String,
+    lastName: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
+});
 
-// const Contact = mongoose.model('Contact', contactSchema);
+const User = mongoose.model('User', userSchema);
 
 
 
-// // Serve the static files from the Front End Directory > Lookup
-// app.use(express.static(path.join(__dirname, '../clientSide')));
+// Database/task Model
+const Task = mongoose.model('Task', {
+    title: String,
+    description: String,
+    completed: Boolean,
+    dueDate: Date,
+    dateCompleted: Date,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    createdAt: { type: Date, default: Date.now }
+});
 
-// // Serve the landing page
-// app.get('/home', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/index.html'));
-// });
 
-// // Serve the dashboard page
-// app.get('/dashboard', isAuthenticated, (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/dashboard.html'));
-// });
 
-// // Serve the signup page
-// app.get('/signup', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/signup.html'));
-// });
 
-// // Serve the login page
-// app.get('/login', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/login.html'));
-// });
+// Database/Contact Form Model
+const contactSchema = new mongoose.Schema({
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    email: { type: String, required: true },
+    question: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now }
+});
 
-// // Serve the contact page
-// app.get('/contact', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/contact.html'));
-// });
+const Contact = mongoose.model('Contact', contactSchema);
 
-// // Serve the plans page
-// app.get('/pricing', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/pricing.html'));
-// });
 
-// // Serve the about page
-// app.get('/about', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/about.html'));
-// });
 
-// // Serve the enquiry submitted page
-// app.get('/enquiry_submitted', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/enquirySubmitted.html'));
-// });
+// Serve the static files from the Front End Directory > Lookup
+app.use(express.static(path.join(__dirname, '../clientSide')));
 
-// // Serve the reset password page
-// app.get('/reset_password', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/resetPassword.html'));
-// });
+// Serve the landing page
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/index.html'));
+});
 
-// // Serve the forgot password page
-// app.get('/forgot_password', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/forgotPassword.html'));
-// });
+// Serve the dashboard page
+app.get('/dashboard', isAuthenticated, (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/dashboard.html'));
+});
 
-// // Serve the link sent page
-// app.get('/link_sent', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/resetPasswordLinkSent.html'));
-// });
+// Serve the signup page
+app.get('/signup', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/signup.html'));
+});
 
-// // Serve the success reset password page
-// app.get('/success', (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/passwordResetSuccess.html'));
-// });
+// Serve the login page
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/login.html'));
+});
+
+// Serve the contact page
+app.get('/contact', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/contact.html'));
+});
+
+// Serve the plans page
+app.get('/pricing', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/pricing.html'));
+});
+
+// Serve the about page
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/about.html'));
+});
+
+// Serve the enquiry submitted page
+app.get('/enquiry_submitted', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/enquirySubmitted.html'));
+});
+
+// Serve the reset password page
+app.get('/reset_password', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/resetPassword.html'));
+});
+
+// Serve the forgot password page
+app.get('/forgot_password', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/forgotPassword.html'));
+});
+
+// Serve the link sent page
+app.get('/link_sent', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/resetPasswordLinkSent.html'));
+});
+
+// Serve the success reset password page
+app.get('/success', (req, res) => {
+    res.sendFile(path.join(__dirname, '../clientSide/passwordResetSuccess.html'));
+});
 
 
 
@@ -549,10 +549,3 @@ app.post('/reset_password/:token', async (req, res) => {
 app.listen(PORT, ()=> {
     console.log(`Server listening http://localhost:${PORT}`);
 });
-
-
-// // Run server
-// const SERVER = 'https://to-do-app-backend-alpha.vercel.app';
-// app.listen(SERVER, ()=> {
-//     console.log(`Server listening on Server ${SERVER}`);
-// });
