@@ -6,9 +6,9 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const cors = require('cors');
-const PORT = 3000
+// const cors = require('cors');
 // app.use(cors({ origin: "*", credentials: true }));
+const PORT = 3000
 
 
 require('dotenv').config();
@@ -24,10 +24,11 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 
-// MongoDB Connection
+// MongoDB Connection                                                                      
 mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 50000
 });
 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
@@ -79,7 +80,7 @@ const Task = mongoose.model('Task', {
 });
 
 
-
+//
 
 // Database/Contact Form Model
 const contactSchema = new mongoose.Schema({
@@ -159,15 +160,6 @@ app.get('/success', (req, res) => {
 
 
 
-// test for deployment
-app.get('/testing', (req, res) => {
-    res.status(200).json('hello, this is working')
-});
-
-
-//
-
-
 function isAuthenticated(req, res, next) {
     if (req.session.userId) {
         return next();
@@ -186,7 +178,7 @@ const asyncHandler = fn => (req, res, next) => {
 
 
 // Routes
-app.get('/tasks', isAuthenticated, async (req, res) => {  
+app.get('/tasks', isAuthenticated, async (req, res) => {                              
     try {
         const userId = req.session.userId;
         const tasks = await Task.find({ user: userId });
@@ -215,9 +207,9 @@ app.delete('/delete-task/:id', async (req, res) => {
 
 
 
-app.get('/user_info', isAuthenticated, async (req, res) => {
+app.get('/user_info', isAuthenticated, async (req, res) => {                            
     const userId = req.session.userId;
-
+        
     try {
         const user = await User.findById(userId).select('firstName lastName');
         if (user) {
@@ -300,7 +292,7 @@ app.post('/tasks', async (req, res) => {
 
 
 
-// Edit / Update task
+// // Edit / Update task
 app.patch('/tasks/:taskId', async (req, res) => {
     try {
         const { taskId } = req.params;
@@ -336,7 +328,7 @@ app.patch('/tasks/:taskId', async (req, res) => {
 
 
 
-// New user Signup
+// // New user Signup
 app.post('/signup', asyncHandler(async (req, res) => {
     const { email, password, firstName, lastName } = req.body;
 
@@ -344,8 +336,17 @@ app.post('/signup', asyncHandler(async (req, res) => {
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
     if (!passwordPattern.test(password)) {
-        return res.status(400).json({ message: 'Password does not meet requirements' });
+        return res.status(400).json({ 
+            message: 'Password does not meet requirements. Password must contain: At least one digit, at least one lowercase letter, at least one uppercase letter, at least one special character and a minimum length of 8 characters.' 
+        });
     }
+
+    // Password Requirements
+    // At least one digit: (?=.*\d) — Requires at least one numeric digit (0-9).
+    // At least one lowercase letter: (?=.*[a-z]) — Requires at least one lowercase letter (a-z).
+    // At least one uppercase letter: (?=.*[A-Z]) — Requires at least one uppercase letter (A-Z).
+    // At least one special character: (?=.*\W) — Requires at least one non-word character (e.g., !, @, #, $, %, etc.). \W matches any character that is not a letter, digit, or underscore.
+    // Minimum length of 8 characters: .{8,} — The password must be at least 8 characters long.
     
 
     try {
@@ -377,7 +378,7 @@ app.post('/signup', asyncHandler(async (req, res) => {
 
 
 
-// Existing user Login 
+// // Existing user Login 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;  // Changed 'username' to 'email'
     console.log('Login attempt:', { email, password });  // Debug log
@@ -436,7 +437,7 @@ app.get('/logout', async (req, res) => {
 
 
 
-// Forgot Password / sends email to user with a reset link
+// // Forgot Password / sends email to user with a reset link
 app.post('/forgot_password', async (req, res) => {
     const { email } = req.body;
 
@@ -505,7 +506,7 @@ app.get('/reset_password/:token', async (req, res) => {
 
 
 
-// Route to handle new password submission
+// // Route to handle new password submission
 app.post('/reset_password/:token', async (req, res) => {
     const { newPasswordInput, confirmNewPasswordInput } = req.body;
 
@@ -549,10 +550,3 @@ app.post('/reset_password/:token', async (req, res) => {
 app.listen(PORT, ()=> {
     console.log(`Server listening http://localhost:${PORT}`);
 });
-
-
-// // Run server
-// const SERVER = 'https://to-do-app-backend-alpha.vercel.app';
-// app.listen(SERVER, ()=> {
-//     console.log(`Server listening on Server ${SERVER}`);
-// });
