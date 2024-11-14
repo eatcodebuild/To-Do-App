@@ -26,6 +26,7 @@ app.set('views', path.join(__dirname, 'views'));
 mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 50000
 });
 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB Connection Error:'));
