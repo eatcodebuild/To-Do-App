@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const cors = require('cors');
+app.use(cors({ origin: "*", credentials: true }));
 const PORT = 3000
 
 
