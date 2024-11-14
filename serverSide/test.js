@@ -158,15 +158,6 @@ app.get('/success', (req, res) => {
 
 
 
-// test for deployment
-app.get('/testing', (req, res) => {
-    res.status(200).json('hello, this is working')
-});
-
-
-
-
-
 function isAuthenticated(req, res, next) {
     if (req.session.userId) {
         return next();
@@ -343,8 +334,17 @@ app.post('/signup', asyncHandler(async (req, res) => {
     const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
 
     if (!passwordPattern.test(password)) {
-        return res.status(400).json({ message: 'Password does not meet requirements' });
+        return res.status(400).json({ 
+            message: 'Password does not meet requirements. Password must contain: At least one digit, at least one lowercase letter, at least one uppercase letter, at least one special character and a minimum length of 8 characters.' 
+        });
     }
+
+    // Password Requirements
+    // At least one digit: (?=.*\d) — Requires at least one numeric digit (0-9).
+    // At least one lowercase letter: (?=.*[a-z]) — Requires at least one lowercase letter (a-z).
+    // At least one uppercase letter: (?=.*[A-Z]) — Requires at least one uppercase letter (A-Z).
+    // At least one special character: (?=.*\W) — Requires at least one non-word character (e.g., !, @, #, $, %, etc.). \W matches any character that is not a letter, digit, or underscore.
+    // Minimum length of 8 characters: .{8,} — The password must be at least 8 characters long.
     
 
     try {

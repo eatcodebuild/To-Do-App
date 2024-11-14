@@ -351,7 +351,7 @@
             }
 
             // send signup data to the server
-            fetch('https://to-do-app-backend-alpha.vercel.app/signup', {
+            fetch('/signup', {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json'
@@ -360,6 +360,7 @@
             })
             .then(response => {
                 if (!response.ok) {
+                    window.alert("Password Requirements:\n- At least one digit.\n- At least one lowercase letter.\n- At least one uppercase letter.\n- At least one special character.\n- Minimum length of 8 characters.");
                     throw new Error('Failed to sign up');
                 }
                 // Optionally, you can redirect the user to a different page after submission
