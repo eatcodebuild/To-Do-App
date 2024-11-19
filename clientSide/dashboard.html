@@ -124,6 +124,9 @@
                 console.error('Error fetching user info:', error);
                 document.getElementById('greeting').textContent = 'Hi!';
             });
+
+            // Fetch tasks on page load
+            fetchTasks();
         
             // Function to capitalize first letter of each word
             function capitalizeFirstLetterOfEveryWord(input) {
