@@ -178,7 +178,7 @@ const asyncHandler = fn => (req, res, next) => {
 
 
 // Routes
-app.get('https://to-do-app-backend-ryans-projects-754deec9.vercel.app/tasks', isAuthenticated, async (req, res) => {                              
+app.get('/tasks', isAuthenticated, async (req, res) => {                              
     try {
         const userId = req.session.userId;
         const tasks = await Task.find({ user: userId });
