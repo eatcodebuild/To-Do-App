@@ -103,10 +103,17 @@ app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/index.html'));
 });
 
+// // Serve the dashboard page
+// app.get('/dashboard', isAuthenticated, (req, res) => {
+//     res.sendFile(path.join(__dirname, '../clientSide/dashboard.html'));
+// });
+
+
 // Serve the dashboard page
-app.get('/dashboard', isAuthenticated, (req, res) => {
+app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/dashboard.html'));
 });
+
 
 // Serve the signup page
 app.get('/signup', (req, res) => {
