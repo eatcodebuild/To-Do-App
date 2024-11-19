@@ -246,6 +246,7 @@ app.delete('/delete-task/:id', async (req, res) => {
 
 app.get('/user_info', async (req, res) => {                            
     const userId = req.session.userId;
+    console.log('User ID from session:', userId);
         
     try {
         const user = await User.findById(userId).select('firstName lastName');
