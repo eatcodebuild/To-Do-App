@@ -49,8 +49,6 @@ app.use(session({
     saveUninitialized: false,
     cookie: { 
         maxAge: 3600000, // 1 hour
-        sameSite: 'None', // Allows cookies to work in a cross-site context
-        secure: true      // Ensures cookies are sent only over HTTPS
     }
 }));
 
