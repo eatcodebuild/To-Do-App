@@ -160,13 +160,13 @@ app.get('/success', (req, res) => {
 
 
 
-function isAuthenticated(req, res, next) {
-    if (req.session.userId) {
-        return next();
-    } else {
-        res.redirect('/login');
-    }
-}
+// function isAuthenticated(req, res, next) {
+//     if (req.session.userId) {
+//         return next();
+//     } else {
+//         res.redirect('/login');
+//     }
+// }
 
 
 
@@ -177,8 +177,21 @@ const asyncHandler = fn => (req, res, next) => {
 
 
 
+// // Routes
+// app.get('/tasks', isAuthenticated, async (req, res) => {                              
+//     try {
+//         const userId = req.session.userId;
+//         const tasks = await Task.find({ user: userId });
+//         res.json(tasks);
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// });
+
+
+
 // Routes
-app.get('/tasks', isAuthenticated, async (req, res) => {                              
+app.get('/tasks', async (req, res) => {                              
     try {
         const userId = req.session.userId;
         const tasks = await Task.find({ user: userId });
