@@ -103,11 +103,6 @@ app.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, '../clientSide/index.html'));
 });
 
-// // Serve the dashboard page
-// app.get('/dashboard', isAuthenticated, (req, res) => {
-//     res.sendFile(path.join(__dirname, '../clientSide/dashboard.html'));
-// });
-
 
 // Serve the dashboard page
 app.get('/dashboard', (req, res) => {
@@ -166,17 +161,6 @@ app.get('/success', (req, res) => {
 });
 
 
-
-function isAuthenticated(req, res, next) {
-    if (req.session.userId) {
-        return next();
-    } else {
-        res.redirect('/login');
-    }
-}
-
-
-
 const asyncHandler = fn => (req, res, next) => {
     Promise.resolve(fn(req, res, next)).catch(next);
 };
@@ -184,16 +168,6 @@ const asyncHandler = fn => (req, res, next) => {
 
 
 
-// // Routes
-// app.get('/tasks', isAuthenticated, async (req, res) => {                              
-//     try {
-//         const userId = req.session.userId;
-//         const tasks = await Task.find({ user: userId });
-//         res.json(tasks);
-//     } catch (err) {
-//         res.status(500).json({ message: err.message });
-//     }
-// });
 
 
 
@@ -226,9 +200,9 @@ app.delete('/delete-task/:id', async (req, res) => {
 
 
 
-
-app.get('/user_info', isAuthenticated, async (req, res) => {                            
+app.get('/user_info', async (req, res) => {                            
     const userId = req.session.userId;
+    console.log('User ID from session:', userId);
         
     try {
         const user = await User.findById(userId).select('firstName lastName');
@@ -241,24 +215,6 @@ app.get('/user_info', isAuthenticated, async (req, res) => {
         res.status(500).json({ message: 'Error fetching user info' });
     }
 });
-
-
-
-// app.get('/user_info', async (req, res) => {                            
-//     const userId = req.session.userId;
-//     console.log('User ID from session:', userId);
-        
-//     try {
-//         const user = await User.findById(userId).select('firstName lastName');
-//         if (user) {
-//             res.json({ firstName: user.firstName, lastName: user.lastName });
-//         } else {
-//             res.status(404).json({ message: 'User not found' });
-//         }
-//     } catch (err) {
-//         res.status(500).json({ message: 'Error fetching user info' });
-//     }
-// });
 
 
 
